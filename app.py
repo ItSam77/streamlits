@@ -70,15 +70,15 @@ if st.sidebar.button("Predict"):
         else:
             st.error(f"Predicted Status: {prediction}")
         
-        # Display prediction probabilities
+        # Display prediction probabilities as percentages
         st.subheader("Prediction Probabilities")
-        proba_df = pd.DataFrame({
-            'Status': ["Dropout", "Enrolled", "Graduate"],
-            'Probability': probability * 100
-        })
+        dropout_prob = probability[0] * 100
+        enrolled_prob = probability[1] * 100
+        graduate_prob = probability[2] * 100
         
-        # Display bar chart of probabilities
-        st.bar_chart(proba_df.set_index('Status'))
+        st.write(f"Dropout: {dropout_prob:.1f}%")
+        st.write(f"Enrolled: {enrolled_prob:.1f}%")
+        st.write(f"Graduate: {graduate_prob:.1f}%")
         
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")
