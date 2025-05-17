@@ -36,7 +36,34 @@ scholarship_holder = st.sidebar.selectbox("Scholarship Holder", [0, 1], format_f
 age_at_enrollment = st.sidebar.slider("Age at Enrollment", 17, 70, 20)
 debtor = st.sidebar.selectbox("Debtor", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
 gender = st.sidebar.selectbox("Gender", [0, 1], format_func=lambda x: "Female" if x == 0 else "Male")
-application_mode = st.sidebar.slider("Application Mode", 1, 17, 1)
+
+# Application mode options
+application_modes = {
+    1: "1st phase - general contingent",
+    2: "Ordinance No. 612/93",
+    5: "1st phase - special contingent (Azores Island)",
+    7: "Holders of other higher courses",
+    10: "Ordinance No. 854-B/99",
+    15: "International student (bachelor)",
+    16: "1st phase - special contingent (Madeira Island)",
+    17: "2nd phase - general contingent",
+    18: "3rd phase - general contingent",
+    26: "Ordinance No. 533-A/99, item b2) (Different Plan)",
+    27: "Ordinance No. 533-A/99, item b3 (Other Institution)",
+    39: "Over 23 years old",
+    42: "Transfer",
+    43: "Change of course",
+    44: "Technological specialization diploma holders",
+    51: "Change of institution/course",
+    53: "Short cycle diploma holders",
+    57: "Change of institution/course (International)"
+}
+
+application_mode = st.sidebar.selectbox(
+    "Application Mode",
+    options=list(application_modes.keys()),
+    format_func=lambda x: application_modes[x]
+)
 
 # Create a prediction button
 if st.sidebar.button("Predict"):
